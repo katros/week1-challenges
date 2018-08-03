@@ -4,19 +4,17 @@ console.log('Welcome to the array & DOM challenges');
 // INSTRUCTIONS: use Array.forEach() to console.log() each element
 
 // DO NOT TOUCH BELOW
-var arr = [
-    'Hello',
-    'my',
-    'name',
-    'is',
-    'John',
-];
+var arr = ['Hello', 'my', 'name', 'is', 'John'];
 // DO NOT TOUCH ABOVE
 
-function logArrayElements(input) {}
+function logArrayElements(input) {
+    input.forEach(function(elem) {
+        console.log(elem);
+    });
+}
 
 // UNCOMMENT BELOW
-// logArrayElements(arr);
+logArrayElements(arr);
 
 // -----------CHALLENGE 2----------
 // INSTRUCTIONS: use Array.map() to return a new array with the uppercase elements
@@ -29,15 +27,27 @@ function logArrayElements(input) {}
 //     'JOHN',
 // ]
 
-function transformUppercase(input) {}
+function transformUppercase(input) {
+    var result = input.map(function(elem) {
+        return elem.toUpperCase();
+    });
+    return result;
+}
 
 // UNCOMMENT BELOW
-// console.log(transformUppercase(arr));
+console.log(transformUppercase(arr));
 
 // -----------CHALLENGE 3----------
 // INSTRUCTIONS: use Array.reduce() to concatenate all the strings in the array
 // expected result: 'Hello my name is John'
-function reduceStrings(input) {}
+function reduceStrings(input) {
+    var str = input.reduce(function(acc, curr) {
+        return acc + ' ' + curr;
+    }, '');
+    return str;
+}
+
+console.log(reduceStrings(arr));
 
 // -----------CHALLENGE 4----------
 // INSTRUCTIONS: use Array.map() to return an array containing the city of each element
@@ -53,29 +63,34 @@ function reduceStrings(input) {}
 arr = [
     {
         name: 'John',
-        address: { city: 'Berlin' },
+        address: { city: 'Berlin' }
     },
     {
         name: 'Albert',
-        address: { city: 'New York' },
+        address: { city: 'New York' }
     },
     {
         name: 'Hannah',
-        address: { city: 'Sydney' },
+        address: { city: 'Sydney' }
     },
     {
         name: 'Paul',
-        address: { city: 'Tokyo' },
-    },
+        address: { city: 'Tokyo' }
+    }
 ];
 // DO NOT TOUCH ABOVE
 
-function getCitiesArray(input) {}
+function getCitiesArray(input) {
+    var city = input.map(function(el) {
+        return el.address.city;
+    });
+    return city;
+}
 
 // UNCOMMENT BELOW
-// console.log(getCitiesArray(arr));
+console.log(getCitiesArray(arr));
 
-// -----------CHALLENGE 4----------
+// -----------CHALLENGE 5----------
 // INSTRUCTIONS: use Array.find() to return the person living in Sydney
 // expected result:
 // {
@@ -83,12 +98,17 @@ function getCitiesArray(input) {}
 //     address: { city: 'Sydney' },
 // },
 
-function getSydneyCitizen(input) {}
+function getSydneyCitizen(input) {
+    var found = input.find(function(el) {
+        if (el.address.city === 'Sydney') return el;
+    });
+    return found;
+}
 
 // UNCOMMENT BELOW
-// console.log(getSydneyCitizen(arr));
+console.log(getSydneyCitizen(arr));
 
-// -----------CHALLENGE 5----------
+// -----------CHALLENGE 6----------
 // INSTRUCTIONS: use Array.filter() to return a new Array with persons older than 24 years
 // expected result:
 // [
@@ -109,12 +129,17 @@ arr.forEach(function(el, index) {
     el.age = (index + 1) * 12;
 });
 // DO NOT TOUCH ABOVE
-function getWisePeople(input) {}
+function getWisePeople(input) {
+    var result = input.filter(function(el) {
+        return el.age > 24;
+    });
+    return result;
+}
 
 // UNCOMMENT BELOW
-// console.log(getWisePeople(arr));
+console.log(getWisePeople(arr));
 
-// -----------CHALLENGE 5----------
+// -----------CHALLENGE 7----------
 // INSTRUCTIONS: use Array.slice() to return a new array with the two people in the middle
 // expected result:
 // [
@@ -130,39 +155,62 @@ function getWisePeople(input) {}
 //     },
 // ]
 
-function getMiddlePeople(input) {}
+function getMiddlePeople(input) {
+    var result = input.slice(1, 3);
+    return result;
+}
 
 // UNCOMMENT BELOW
-// console.log(getMiddlePeople(arr));
+console.log(getMiddlePeople(arr));
 
-// -----------CHALLENGE 6----------
+// -----------CHALLENGE 8----------
 // INSTRUCTIONS:
 // 1. Use document.querySelector to select all paragraphs.
 // 2. Use Array.map() to return a new array with all of the heights (element.clientHeight) of the selected paragraphs.
 // HINT: don't forget to wrap document.querySelector in Array.from()
 
-function getParagraphHeights() {}
+function getParagraphHeights() {
+    var paragraphs = Array.from(document.querySelectorAll('p'));
+    console.log(paragraphs);
+    var result = paragraphs.map(function(el) {
+        return el.clientHeight;
+    });
+    return result;
+}
 
 // UNCOMMENT BELOW
-// console.log(getParaGraphHeights())
+console.log(getParagraphHeights());
 
-// -----------CHALLENGE 6----------
+// -----------CHALLENGE 9----------
 // INSTRUCTIONS:
 // 1. Use document.querySelector to select one paragraph
 // 2. Use Object.keys() to get an array of all keys of the element.style property
 // 3. Finally, use Array.filter() to return a new array with keys that start with the letter 'm'
 
-function getFilteredStyleKeys() {}
+function getFilteredStyleKeys() {
+    var paragraph = document.querySelector('p');
+    var keys = Object.keys(paragraph.style);
+    var startingWithM = keys.filter(function(el) {
+        return el.charAt(0) === 'm';
+    });
+    return startingWithM;
+}
 
 // UNCOMMENT BELOW
-// console.log(getFilteredStyleKeys())
+console.log(getFilteredStyleKeys());
 
-// -----------CHALLENGE 7----------
+// -----------CHALLENGE 10----------
 // INSTRUCTIONS:
 // 1. Use document.querySelectorAll to select all paragraphs.
 // 2. Use Array.forEach() to modify the 'innerHTML' of each element. You can set just any text inside.
 
-function changeHtml() {}
+function changeHtml() {
+    var paragraphs = Array.from(document.querySelectorAll('p'));
+    paragraphs.forEach(function(el) {
+        el.innerHTML = 'Bum';
+    });
+    return paragraphs;
+}
 
 // UNCOMMENT BELOW
-// changeHtml()
+changeHtml();
